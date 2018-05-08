@@ -1,0 +1,11 @@
+<div id='imageTabSelectImagesDiv'>
+	<div>
+		<form action="" method="POST" enctype='multipart/form-data'>
+			{% csrf_token %}
+			{{ form.as_p }}
+			<img src='{{ instance.image.url }}' class='img-responsive' />
+			<input type="submit" value="Change Me" />
+		</form>
+	</div>
+
+</div>

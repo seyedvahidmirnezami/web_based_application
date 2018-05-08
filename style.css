@@ -1,0 +1,138 @@
+/* Global styling */
+.tabDiv {
+    height: 80%;
+}
+
+.backBtn {
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.nextBtn {
+    float: right;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+/* Start tab styling */
+#startMainContentWrapperDiv {
+    width: 800px;
+    height: 400px;
+    background-color: #EDD6D6;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+
+#startMainContentDiv {
+    width: 80%;
+    height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#startButtonsDiv {
+    position: absolute; 
+    bottom: 0;
+    width: 100%; 
+    height: 50px;
+}
+#configureSettingsBtn {
+    margin-left: 50px;
+}
+#productionBtn {
+    float: right;
+    margin-right: 50px;
+}
+
+/* Crop type tab styling */
+
+
+/* Image tab styling */
+#imageInputsDiv {
+    width: 25%;
+    height: 90%;
+    /* background-color: #EDD6D6; */
+    float: left;
+    font-size: 10pt;
+    
+    display: none; /* Don't show until image loaded */
+}
+
+.thresholdSlider {
+    width: 60%;
+}
+
+#adaptiveThresholdInputsDiv {
+    display: none;
+}
+
+#imageTabRightDiv {
+    width: 70%;
+    height: 90%;
+    /* background-color: #EDDFDF; */
+    float: left;
+    margin-left: 5px;
+}
+
+#imageTabSelectImagesDiv {
+    height: 20%;
+    /* border: 1px solid red; */
+}
+
+#imageTabBtnsDiv {
+    
+    display: none; /* Hide until image loaded */
+}
+
+#imageTabImagesDiv {
+    margin-top: 5px;
+    height: 60%;
+    display: none; /* Hide until image loaded */
+    /* border: 1px solid green; */
+}
+
+.imageTabImg {
+    width: 45%;
+    height: 85%;
+    position: relative;
+}
+
+/*.imageTabImg:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}*/
+
+#imagesTabOriginalImg {
+    margin-left: 5px;
+    float: left;
+}
+
+#imagesTabProcessedImg {
+    margin-right: 5px;
+    float: right;
+}
+
+.nextBackBtnsDiv {
+    clear: both;
+}
+
+/* Save tab styling */
+.saveTabLabelCell {
+    text-align: right;
+    padding-top: 5px;
+}
+
+.saveTabAdaptiveThresholdValues {
+    display: none;
+}
+
+#saveSettingsBtn {
+    margin-left: 10px;
+}

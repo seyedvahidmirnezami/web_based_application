@@ -1,0 +1,305 @@
+{% load static %}
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<link rel='stylesheet' href='/static/aria_test1/style.css' >
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="jquery-1.12.1/jquery-ui.min.js"></script>
+    {% load staticfiles %}
+    <script type="text/javascript" src='{% static "aria_test1/aria.js" %}'></script>
+    <title>Aria</title>
+</head>
+
+<body>
+
+    <div id="tabs">
+        <ul>
+            <li><a href="#startTab">Start</a></li>
+            <li><a href="#cropTypeTab">Crop Type</a></li>
+            <li><a href="#imageTab">Image</a></li>
+            <li><a href="#plotsTab">Plots</a></li>
+            <li><a href="#saveTab">Save</a></li>
+            <li><a href="#productionTab">Production</a></li>
+        </ul>
+      
+        <!-- Start Page -->
+        <div id="startTab" class='tabDiv'>
+            <div id='startMainContentWrapperDiv'>
+                <div id='startMainContentDiv'>
+                    <div id='titleDiv'>
+                        <h3 id='title'>ARIA: Automated Root Image Analysis</h3>
+                    </div>
+                    <div id='developedByDiv'>
+                        <span>Software Developed by Ganapathysubramanian group (ISU)</span>
+                        <br>
+                        <span>Lead Developers: Hsiang Sing Naik, Nigel Lee, Zaki Jubery</span>
+                    </div>
+                </div>
+                <div id='startButtonsDiv'>
+                    <input type='button' id='configureSettingsBtn' value='Configure Settings'>
+                    <input type='button' id='productionBtn' value='Production'>
+                </div>
+            </div>
+        </div>
+      
+        <!-- Crop type tab -->
+        <div id="cropTypeTab" class='tabDiv'>
+            <label>
+                <input type='radio' name='cot' value='dicot' checked>Dicot
+            </label>
+            <br>
+            <label>
+                <input type='radio' name='cot' value='monocot'>Monocot
+            </label>
+            <br><br>
+            <label>
+                <input type='radio' name='age' value='seedlings' checked>Seedlings
+            </label>
+            <br>
+            <label>
+                <input type='radio' name='age' value='mature'>Mature
+            </label>
+            <br><br>
+            <input type='button' id='backFromCropTypeBtn' value='Back'>
+            <input type='button' id='nextFromCropTypeBtn' value='Next'>
+        </div>
+      
+        <!-- Image Tab -->
+        <div id="imageTab" class='tabDiv'>
+            <div id='imageInputsDiv'>
+                <label>Scale: 1nm = 
+                    <input type='text' id='imageScale' value='4.2' size='3'> pixels
+                </label>
+                <br><br>
+                
+                <label>Color model:&nbsp;
+                    <select id='inputColorModel'>
+                        <option value="rgb">RGB</option>
+                        <option value="hsv">HSV</option>
+                        <option value="lab">Lab</option>
+                        <option value="bw">BW</option>
+                    </select>
+                </label>
+                <br><br>
+                
+                Image Threshold: <br>
+                <div id='rgbThresh'>
+                    <label id='rThresholdLbl'>R: 
+                        <input type='range' class='thresholdSlider' id='rRGBThreshold' min='0' max='255' step='1' value='255'>
+                        <span id='rThresholdValue'></span>
+                    </label>
+                    <br>
+                    <label id='gThresholdLbl'>G: 
+                        <input type='range' class='thresholdSlider' id='gRGBThreshold' min='0' max='255' step='1' value='255'>
+                        <span id='gThresholdValue'></span>
+                    </label>
+                    <br>
+                    <label id='bThresholdLbl'>B: 
+                        <input type='range' class='thresholdSlider' id='bRGBThreshold' min='0' max='255' step='1' value='255'>
+                        <span id='bThresholdValue'></span>
+                    </label>
+                </div>
+
+                <div id='hsvThresh'>
+                    <label id='rThresholdLbl'>H: 
+                        <input type='range' class='thresholdSlider' id='rHSVThreshold' min='0' max='180' step='1' value='255'>
+                        <span id='rThresholdValue'></span>
+                    </label>
+                    <br>
+                    <label id='gThresholdLbl'>S: 
+                        <input type='range' class='thresholdSlider' id='gHSVThreshold' min='0' max='255' step='1' value='255'>
+                        <span id='gThresholdValue'></span>
+                    </label>
+                    <br>
+                    <label id='bThresholdLbl'>V: 
+                        <input type='range' class='thresholdSlider' id='bHSVThreshold' min='0' max='255' step='1' value='255'>
+                        <span id='bThresholdValue'></span>
+                    </label>
+                </div>
+
+                <div id='labThresh'>
+                    <label id='rThresholdLbl'>L: 
+                        <input type='range' class='thresholdSlider' id='rLABThreshold' min='0' max='255' step='1' value='255'>
+                        <span id='rThresholdValue'></span>
+                    </label>
+                    <br>
+                    <label id='gThresholdLbl'>A: 
+                        <input type='range' class='thresholdSlider' id='gLABThreshold' min='0' max='255' step='1' value='255'>
+                        <span id='gThresholdValue'></span>
+                    </label>
+                    <br>
+                    <label id='bThresholdLbl'>B: 
+                        <input type='range' class='thresholdSlider' id='bLABThreshold' min='0' max='255' step='1' value='255'>
+                        <span id='bThresholdValue'></span>
+                    </label>
+                </div>
+
+                <div id='bwThresh'>
+                    <label id='rThresholdLbl'>B: 
+                        <input type='range' class='thresholdSlider' id='bwThreshold' min='0' max='255' step='1' value='255'>
+                        <span id='rThresholdValue'></span>
+                    </label>
+                </div>
+                <br><br>
+                
+                <br>
+                
+                <label>
+                    <input type='checkbox' id='useAdaptiveThreshold'>Use Adaptive Threshold
+                </label>
+                <br>
+                <div id='adaptiveThresholdInputsDiv'>
+                    <label>
+                        Component to threshold: 
+                        <select id='adaptiveThresholdComponent'>
+                            <option value="r">R</option>
+                            <option value="g">G</option>
+                            <option value="b">B</option>
+                        </select>
+                    </label>
+                    <br><br>
+                    
+                    <label>Adaptive Threshold (-0.5, 0.5): 
+                        <input type='text' id='adaptiveThreshold' value='0' size='4'>
+                    </label>
+                    <br><br>
+                    
+                    <label>Window size (nm): 
+                        <input type='text' id='adaptiveThresholdWindowSize' value='2' size='4'>
+                    </label>
+                    <br><br>
+                </div>
+                <br>
+                
+                <label>Gaussian filter: 
+                    <input type='text' id='gaussianFilter' value='0' size='4'>
+                </label>
+                <br><br>
+                
+                <label>Noise size (pixels): 
+                    <input type='text' id='noiseSize' value='10' size='4'>
+                </label>
+                <br><br>
+                
+                <br>
+                
+                <input type='button' id='resetInputsBtn' value='Save Settings'>
+            </div>
+            
+            <div id='imageTabRightDiv'>
+                <div id='imageTabSelectImagesDiv'>
+                    <input type='button' id='selectInputImageBtn' value='Select Image'>
+                    <input type='file' id='inputImageFileInput' accept='image/*' style='display: none;'>
+                    <!--<input type='file' multiple id='inputImageFileInput' accept='image/*' style='display: none;'>-->
+                    <span id='imageInputLabel'></span>
+                </div>
+                
+                <div id='imageTabImagesDiv'>
+                    {% csrf_token %}
+                    <img src='#' id='imagesTabOriginalImg' alt='pic1' class='imageTabImg'>
+                    <img src='#' id='imagesTabProccessedImg' alt='pic2' class='imageTabImg'>
+                </div>
+                
+                <div id='imageTabBtnsDiv'>
+                    <input type='button' id='interactBtn' value='Interact with Image'>
+                    <input type='button' id='saveProcessedImgBtn' value='Reset to Saved Settings'>
+                    <input type='button' id='invertBtn' value='Invert Image'>
+                </div>  
+            
+            </div>
+            <br>
+            <div class='nextBackBtnsDiv'>
+                <input type='button' id='backFromImageTabBtn' value='Back' class='backBtn'>
+                <input type='button' id='nextFromImageTabBtn' value='Next' class='nextBtn' disabled>
+            </div>
+        </div>
+      
+        <!-- Plots Tab -->
+        <div id="plotsTab" class='tabDiv'>
+            <img id='plotImg' src='image.jpg' class='imageTabImg'><br><br>
+            
+            <input type='button' id='savePlotBtn' value='Save Plot Image'><br><br>
+        
+            <div class='nextBackBtnsDiv'>
+                <input type='button' id='backFromPlotTabBtn' value='Back' class='backBtn'>
+                <input type='button' id='nextFromPlotTabBtn' value='Next' class='nextBtn'>
+            </div>
+        </div>
+      
+        <!-- Save Tab -->
+        <div id="saveTab" class='tabDiv'>
+            <br><br>
+            <table>
+                <tr>
+                    <td class='saveTabLabelCell'>Image Scale: </td>
+                    <td><span id='saveTabScale'></span></td>
+                </tr>
+                <tr>
+                    <td class='saveTabLabelCell'>Color Model: </td>
+                    <td><span id='saveTabColorModel'></span></td>
+                </tr>
+                <tr>
+                    <td class='saveTabLabelCell'>R Threshold: </td>
+                    <td><span id='saveTabRthreshold'></span></td>
+                </tr>
+                <tr>
+                    <td class='saveTabLabelCell'>G Threshold: </td>
+                    <td><span id='saveTabGthreshold'></span></td>
+                </tr>
+                <tr>
+                    <td class='saveTabLabelCell'>B Threshold: </td>
+                    <td><span id='saveTabBthreshold'></span></td>
+                </tr>
+                <tr>
+                    <td class='saveTabLabelCell'>Adaptive Threshold: </td>
+                    <td><span id='saveTabUseAdaptiveThreshold'></span></td>
+                </tr>
+                <tr class='saveTabAdaptiveThresholdValues'>
+                    <td class='saveTabLabelCell'>Window Size: </td>
+                    <td><span id='saveTabWindowSize'></span></td>
+                </tr>
+                <tr>
+                    <td class='saveTabLabelCell'>Gaussian Filter: </td>
+                    <td><span id='saveTabGaussianFilter'></span></td>
+                </tr>
+                <tr>
+                    <td class='saveTabLabelCell'>Noise Size: </td>
+                    <td><span id='saveTabNoiseSize'></span></td>
+                </tr>
+            </table>
+            
+            <br><br>
+            
+            <input type='button' value='Save Settings' id='saveSettingsBtn'>
+            
+            <br><br>
+            
+            <div class='nextBackBtnsDiv'>
+                <input type='button' id='backFromSaveTabBtn' value='Back' class='backBtn'>
+                <input type='button' id='nextFromSaveTabBtn' value='Production' class='nextBtn'>
+            </div>
+        </div>
+      
+        <!-- Production Tab -->
+        <div id="productionTab" class='tabDiv'>
+            <input type='button' id='selectProductionImagesBtn' value='Select Image Directory'>
+            <input type='file' multiple id='productionDirectoryInput' style='display: none;'>
+            <span id='productionDirectoryLabel'></span>
+            
+            <br><br>
+            
+            <input type='button' id='selectProductionSettingsBtn' value='Select Production Settings'>
+            <input type='file' id='productionSettingsInput' style='display: none;'>
+            <span id='productionSettingsLabel'></span>
+
+            <br><br>
+
+            <img src='#' id='productionImage' alt='pic3' class='imageTabImg'>
+        </div>
+      
+    </div> <!-- End of tabs -->
+
+</body>
+</html>
